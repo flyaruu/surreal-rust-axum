@@ -861,21 +861,11 @@ dependencies = [
 [[package]]
 name = "simplehttp"
 version = "0.0.1"
-dependencies = [
- "base64",
- "log",
- "reqwest",
- "serde",
- "serde_json",
-]
-
-[[package]]
-name = "simplehttp"
-version = "0.0.1"
 source = "git+https://github.com/flyaruu/simplehttp#7d66ca87a73da76ea09284c3e1052ea816413707"
 dependencies = [
  "base64",
  "log",
+ "reqwest",
  "serde",
  "serde_json",
 ]
@@ -914,7 +904,7 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
- "simplehttp 0.0.1",
+ "simplehttp",
  "surrealdb-http",
  "tokio",
 ]
@@ -927,7 +917,7 @@ dependencies = [
  "base64",
  "serde",
  "serde_json",
- "simplehttp 0.0.1 (git+https://github.com/flyaruu/simplehttp)",
+ "simplehttp",
 ]
 
 [[package]]

@@ -13,12 +13,12 @@ struct Actor {
     last_name: String,
     id: String,
 }
-
 #[tokio::main]
 async fn main() {
     let surreal_client = spawn_blocking(|| {
-        let mut surreal_client = SurrealDbClient::new("root", "root", "http://localhost:8000", "myns", "mydb", SimpleHttpClientReqwest::new_reqwest().unwrap());
-        let mut actor: SurrealStatementReply<Actor> = surreal_client.query_single(&format!("SELECT * FROM actor WHERE id=actor:{}",41)).unwrap();
+        let client = SimpleHttpClientReqwest::new_reqwest().unwrap();
+        let mut surreal_client = SurrealDbClient::new("root", "root", "http://localhost:8000", "myns", "mydb", client);
+        let actor: SurrealStatementReply<Actor> = surreal_client.query_single(&format!("SELECT * FROM actor WHERE id=actor:{}",41)).unwrap();
         println!("Thing: {:?}",actor);
         surreal_client
     }).await.unwrap();
@@ -31,7 +31,6 @@ async fn main() {
         .serve(router.into_make_service())
         .await
         .unwrap();
-
 }
 
 async fn query_actor(Path(actor_id): Path<String>)->impl IntoResponse {
